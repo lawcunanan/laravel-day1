@@ -11,5 +11,6 @@ class task extends Model
         'TaskTitle',
         'TaskDescription',
         'TaskStatus',
+        'user_id'
     ];
 }
