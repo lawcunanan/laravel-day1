@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTaskRequest; 
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -12,6 +13,7 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::where('TaskStatus', 'incomplete')
+            ->where('user_id', Auth::id())
             ->orderBy('created_at', 'asc')
             ->get();
 
@@ -39,9 +41,10 @@ class TaskController extends Controller
    
     public function store(StoreTaskRequest $request)
     {
-      $validated = $request->validated();
+        $validated = $request->validated();
         $validated['TaskStatus'] = 'incomplete';
-
+        $validated['user_id'] = Auth::id();
+        
         Task::create($validated);
 
         return redirect()->route('showTasks.index')
