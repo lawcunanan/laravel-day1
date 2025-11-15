@@ -14,18 +14,21 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function register(AuthRegisterRequest $request) {
-        try {
-            $validated = $request->validated();
-            User::create($validated);
 
-            return redirect('/')->with('success', 'Registration successful. You can now log in.');
-        } catch (QueryException $e) {
-            Log::error('Registration failed: '.$e->getMessage());
-            return redirect()->back()->with('error', 'Registration failed. Please try again.');
-        }
+    protected $dashboards = [
+        'admin' => '/userlist',
+        'user'  => '/taskShow',
+    ];
+
+    public function index() {
+        $users = User::where('status', 'active')
+            ->orderBy('created_at', 'asc')
+            ->get();
+
+        return view('userlist', compact('users'));
     }
-
+    
+   
     public function login(AuthLoginRequest $request) {
        
          try {
@@ -42,14 +45,13 @@ class AuthController extends Controller
                     Auth::login($user);
                     $request ->session()->regenerate();
                     
-
-                    return redirect()->route('showTasks.index')
+                    $redirect = $this->dashboards[$user->role] ?? '/'; 
+                    return redirect($redirect)
                                     ->with('success', 'Login successful.');
                 }
-
-            
-                return redirect()->back()->with('error', 'Invalid email, password, or account inactive.');
-
+                
+                return redirect('/')->with('error', 'The provided credentials do not match our records.');
+                  
             } catch (QueryException $e) {
                 
                 Log::error('Login failed: '.$e->getMessage());
@@ -64,5 +66,30 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
         
         return redirect('/')->with('success', 'Logged out successfully.');
+    }
+
+     public function register(AuthRegisterRequest $request) {
+        try {
+            $validated = $request->validated();
+            User::create($validated);
+
+            return redirect('/')->with('success', 'Registration successful. You can now log in.');
+        } catch (QueryException $e) {
+            Log::error('Registration failed: '.$e->getMessage());
+            return redirect()->back()->with('error', 'Registration failed. Please try again.');
+        }
+    }
+
+
+    public function deactivateUser(User $user) {
+        try {
+            $user->status = 'inactive';
+            $user->update();
+
+            return redirect()->route('userList.index')->with('success', 'User deactivated successfully.');
+        } catch (QueryException $e) {
+            Log::error('User deactivation failed: '.$e->getMessage());
+            return redirect()->route('userList.index')->with('error', 'Failed to deactivate user. Please try again.');
+        }
     }
 }

@@ -12,9 +12,18 @@
 
         @include('components.alerts')
 
-        {{-- Register Form --}}
+        
         <form action="{{ route('register.store') }}" method="POST" class="space-y-5">
             @csrf
+
+            <div>
+                <label for="role" class="block font-semibold mb-1">Role</label>
+                <select id="role" name="role" class="w-full border border-gray-300 rounded-md p-2 focus:ring-green-500 focus:border-green-500" required>
+                    <option value="" disabled selected>Select role</option>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                </select>
+             </div>
 
             <div>
                 <label for="name" class="block font-semibold mb-1">Full Name</label>

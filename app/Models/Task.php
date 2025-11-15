@@ -13,4 +13,10 @@ class task extends Model
         'TaskStatus',
         'user_id'
     ];
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
