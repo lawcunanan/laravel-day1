@@ -14,28 +14,40 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-
+   
     protected $dashboards = [
         'admin' => '/userlist',
         'user'  => '/taskShow',
     ];
-
-    public function index() {
-        $users = User::where('status', 'active')
-            ->orderBy('created_at', 'asc')
-            ->get();
-
-        return view('userlist', compact('users'));
-    }
     
+    public function redirect()
+    {
+        if (Auth::check()) {
+            $user = Auth::user(); 
+            return redirect($this->dashboards[$user->role] ?? '/');
+        }
+
+        return view('auth.login');
+    }
+
+    public function register(AuthRegisterRequest $request) {
+        try {
+            $validated = $request->validated();
+            User::create($validated);
+
+            return redirect('/')->with('success', 'Registration successful. You can now log in.');
+        } catch (QueryException $e) {
+            Log::error('Registration failed: '.$e->getMessage());
+            return redirect()->back()->with('error', 'Registration failed. Please try again.');
+        }
+    }
+
    
     public function login(AuthLoginRequest $request) {
        
          try {
        
                 $validated = $request->validated();
-
-                
                 $user = User::where('email', $validated['email'])
                             ->where('status', 'active')
                             ->first();
@@ -67,29 +79,5 @@ class AuthController extends Controller
         
         return redirect('/')->with('success', 'Logged out successfully.');
     }
-
-     public function register(AuthRegisterRequest $request) {
-        try {
-            $validated = $request->validated();
-            User::create($validated);
-
-            return redirect('/')->with('success', 'Registration successful. You can now log in.');
-        } catch (QueryException $e) {
-            Log::error('Registration failed: '.$e->getMessage());
-            return redirect()->back()->with('error', 'Registration failed. Please try again.');
-        }
-    }
-
-
-    public function deactivateUser(User $user) {
-        try {
-            $user->status = 'inactive';
-            $user->update();
-
-            return redirect()->route('userList.index')->with('success', 'User deactivated successfully.');
-        } catch (QueryException $e) {
-            Log::error('User deactivation failed: '.$e->getMessage());
-            return redirect()->route('userList.index')->with('error', 'Failed to deactivate user. Please try again.');
-        }
-    }
+   
 }

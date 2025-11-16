@@ -7,13 +7,13 @@ use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 
+
 class TaskController extends Controller
 {
    
     public function index()
     {
-        $tasks = Task::where('TaskStatus', 'incomplete')
-            ->where('user_id', Auth::id())
+        $tasks = Task::where('user_id', Auth::id())
             ->orderBy('created_at', 'asc')
             ->get();
 

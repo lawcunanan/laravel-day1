@@ -4,11 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\AuthController;
 use App\Http\Middleware\Authentication;
-use App\Http\Controllers\DashboardRedirectController;
+use App\Http\Controllers\UserController;
 
 
-Route::get('/', [DashboardRedirectController::class, 'redirect']);
 
+Route::get('/', [AuthController::class, 'redirect']);
 
 Route::get('/register', function () {
     return view('auth.register'); 
@@ -23,8 +23,8 @@ Route::controller(AuthController::class)->group(function () {
 
 
 Route::middleware([Authentication::class . ':admin'])->group(function () {
-    Route::get('/userlist', [AuthController::class, 'index'])->name('userList.index');
-    Route::patch('/users/{user}', [AuthController::class, 'deactivateUser'])->name('user.deactivate');
+    Route::get('/userlist', [UserController::class, 'index'])->name('userList.index');
+    Route::patch('/users/{user}/{status}', [UserController::class, 'statusUser'])->name('statusUser');
 });
 
 
