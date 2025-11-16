@@ -12,9 +12,9 @@
         <!-- Header -->
         <div class="flex justify-between items-center mb-6">
             <div>
-                <h1 class="text-2xl font-bold text-blue-700">User List</h1>
-                <p class="text-gray-600 text-sm mt-1">
-                    Welcome, <span class="font-semibold text-blue-800">{{ Auth::user()->name }}</span>!
+                <h1 class="text-3xl font-bold text-blue-700">User List</h1>
+                <p class="text-gray-600 text-base mt-1">
+                    A list of all the users in your account including their name, role, email and so on.
                 </p>
             </div>
 
@@ -22,7 +22,7 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="inline">
                     @csrf
                     <button type="submit"
-                        class="inline-block bg-red-500 hover:bg-red-600 text-white text-[14px] py-1 px-3 rounded-md shadow transition">
+                        class="inline-block bg-red-500 hover:bg-red-600 text-white text-[16px] py-1 px-3 rounded-md shadow transition">
                         Logout
                     </button>
                 </form>
@@ -35,54 +35,54 @@
                 <p class="text-center text-gray-500 py-4">No users found.</p>
             @else
                 <table class="w-full border-collapse rounded-md overflow-hidden">
-                    <thead>
-                        <tr class="bg-blue-700 text-white">
-                            <th class="py-2 px-3 text-left text-sm">Role</th>
-                            <th class="py-2 px-3 text-left text-sm">Name</th>
-                            <th class="py-2 px-3 text-left text-sm">Email</th>
-                            <th class="py-2 px-3 text-left text-sm">Tasks</th>
-                            <th class="py-2 px-3 text-center text-sm">Action</th>
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="py-2 px-3 text-left text-base">Role</th>
+                            <th class="py-2 px-3 text-left text-base">Name</th>
+                            <th class="py-2 px-3 text-left text-base">Email</th>
+                            <th class="py-2 px-3 text-left text-base">Tasks</th>
+                            <th class="py-2 px-3 text-center text-base">Action</th>
                         </tr>
                     </thead>
-                    <tbody class="bg-blue-50">
+                    <tbody class="divide-y divide-gray-200">
                         @foreach ($users as $user)
-                            <tr class="border-b border-blue-200 hover:bg-blue-100 transition">
-                                <td class="py-2 px-3 font-medium text-sm uppercase">{{ $user->role }}</td>
-                                <td class="py-2 px-3 text-sm">{{ $user->name }}</td>
-                                <td class="py-2 px-3 text-sm">{{ $user->email }}</td>
-                                <td class="py-2 px-3 text-sm">
-                                    @if($user->tasks->isNotEmpty())
-                                        <ul class="list-disc list-inside text-gray-600">
+                            <tr>
+                                <td class="py-2 px-3 font-medium text-base uppercase">{{ $user->role }}</td>
+                                <td class="py-2 px-3 text-base">{{ $user->name }}</td>
+                                <td class="py-2 px-3 text-base">{{ $user->email }}</td>
+                                <td class="py-2 px-3 text-base">
+                                    <ul class="list-disc list-inside">
+                                        @if($user->tasks->isNotEmpty())
                                             @foreach($user->tasks as $task)
                                                 <li class="font-medium">
                                                     {{ $task->TaskTitle }}
                                                 </li>
                                             @endforeach
-                                        </ul>
-                                    @else
-                                        <p class="text-gray-500">No tasks.</p>
-                                    @endif
+                                        @else
+                                            <p class="text-gray-500">No tasks.</p>
+                                        @endif
+                                    </ul>
                                 </td>
-                                <td class="py-2 px-3 text-center">
-                                @if($user->status === 'inactive')
-                                    <form action="{{ route('statusUser', [$user, 'active']) }}" method="POST" class="inline">
-                                        @csrf
-                                        @method('PATCH')
-                                        <button type="submit"
-                                                class="text-[12px] bg-blue-700 hover:bg-blue-800 text-white  py-1 px-2 rounded-md ml-2 shadow-sm transition">
-                                            Activate
-                                        </button>
-                                    </form>
-                                 @else
-                                    <form action="{{ route('statusUser', [$user, 'inactive']) }}" method="POST" class="inline">
-                                        @csrf
-                                        @method('PATCH')
-                                        <button type="submit"
-                                                class="text-[12px] bg-red-500 hover:bg-red-600 text-white  py-1 px-2 rounded-md ml-2 shadow-sm transition">
-                                            Deactivate
-                                        </button>
-                                    </form>
-                                    @endif
+                                <td class="py-2 px-3 text-center text-base">
+                                    @if($user->status === 'inactive')
+                                        <form action="{{ route('statusUser', [$user, 'active']) }}" method="POST" class="inline">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button type="submit"
+                                                    class="text-[14px] bg-blue-700 hover:bg-blue-800 text-white  py-1 px-2 rounded-md ml-2 shadow-sm transition">
+                                                Activate
+                                            </button>
+                                        </form>
+                                     @else
+                                        <form action="{{ route('statusUser', [$user, 'inactive']) }}" method="POST" class="inline">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button type="submit"
+                                                    class="text-[14px] bg-red-500 hover:bg-red-600 text-white  py-1 px-2 rounded-md ml-2 shadow-sm transition">
+                                                Deactivate
+                                            </button>
+                                        </form>
+                                        @endif
                                 </td>
                             </tr>
                         @endforeach
