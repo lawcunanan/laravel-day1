@@ -7,13 +7,11 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen flex items-center justify-center bg-white text-black font-sans">
-    <div class="container mx-auto mt-10 bg-gray-50 p-8 rounded-lg shadow-2xl max-w-md w-full">
-        <h1 class="text-2xl font-bold text-center text-blue-600 mb-6">Create Account</h1>
+     @include('components.alerts')
 
-        @include('components.alerts')
-
-        
-        <form action="{{ route('register.store') }}" method="POST" class="space-y-4">
+    <div class="container mx-auto mt-10 bg-gray-50 p-8 rounded-lg shadow-lg max-w-md w-full">
+        <h1 class="text-3xl font-bold text-center text-blue-600 mb-8">Create Account</h1>
+        <form action="{{ route('register.store') }}" method="POST" class="space-y-5">
             @csrf
 
             <div>
@@ -45,10 +43,7 @@
                 <input type="password" id="password_confirmation" name="password_confirmation" class="w-full bg-white border-gray-300 rounded-md p-2 text-black focus:ring-blue-500 focus:border-blue-500" placeholder="Confirm your password" required>
             </div>
 
-            <button type="submit" class="w-full bg-blue-600 text-white text-sm py-2 rounded hover:bg-blue-700 transition flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm0-2a6 6 0 100-12 6 6 0 000 12zM9.293 9.293a1 1 0 011.414 0l2 2a1 1 0 01-1.414 1.414L10 11.414l-1.293 1.293a1 1 0 01-1.414-1.414l2-2z" clip-rule="evenodd" />
-                </svg>
+            <button type="submit" class="w-full bg-blue-600 text-white text-base py-2 rounded hover:bg-blue-700 transition flex items-center justify-center">
                 Register
             </button>
         </form>
@@ -59,6 +54,6 @@
         </p>
     </div>
 
-   
+    <x-footer owner="Lawrence Corp" />
 </body>
 </html>

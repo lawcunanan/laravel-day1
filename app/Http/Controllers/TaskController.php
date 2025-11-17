@@ -47,7 +47,7 @@ class TaskController extends Controller
         
         Task::create($validated);
 
-        return redirect()->route('showTasks.index')
+        return redirect()->back()
             ->with('success', 'Task created successfully.');
     }
 
