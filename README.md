@@ -1,23 +1,68 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Basic Todo List
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This is a simple to-do list application built with Laravel.
+
+## Features
+
+-   User registration and login
+-   Create, read, update, and delete tasks
+-   View a list of all users
+
+## Installation
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/lawcunanan/laravel-day1.git
+    ```
+2. Navigate to the project directory:
+    ```bash
+    cd laravel-day1/basictodo
+    ```
+3. Install PHP dependencies:
+    ```bash
+    composer install
+    ```
+4. Install NPM dependencies:
+    ```bash
+    npm install
+    ```
+5. Create a copy of the `.env.example` file and name it `.env`:
+    ```bash
+    cp .env.example .env
+    ```
+6. Generate an application key:
+    ```bash
+    php artisan key:generate
+    ```
+7. Configure your database in the `.env` file.
+8. Run the database migrations:
+    ```bash
+    php artisan migrate
+    ```
+9. Start the development server:
+    ```bash
+    php artisan serve
+    ```
+10. Compile assets:
+    ```bash
+    npm run dev
+    ```
+
+## Usage
+
+After following the installation steps, you can access the application in your web browser at the address provided by `php artisan serve` (usually `http://127.0.0.1:8000`).
 
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-   [Simple, fast routing engine](https://laravel.com/docs/routing).
+-   [Powerful dependency injection container](https://laravel.com/docs/container).
+-   Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+-   Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+-   Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+-   [Robust background job processing](https://laravel.com/docs/queues).
+-   [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
@@ -33,14 +78,14 @@ We would like to extend our thanks to the following sponsors for funding Laravel
 
 ### Premium Partners
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+-   **[Vehikl](https://vehikl.com)**
+-   **[Tighten Co.](https://tighten.co)**
+-   **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+-   **[64 Robots](https://64robots.com)**
+-   **[Curotec](https://www.curotec.com/services/technologies/laravel)**
+-   **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+-   **[Redberry](https://redberry.international/laravel-development)**
+-   **[Active Logic](https://activelogic.com)**
 
 ## Contributing
 
