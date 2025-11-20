@@ -7,6 +7,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen flex items-center justify-center bg-white text-black font-sans">
+   
     @include('components.alerts')
 
     <div class="container mx-auto mt-10 bg-gray-50 p-8 rounded-lg shadow-lg max-w-md w-full">
