@@ -24,7 +24,7 @@ class AuthController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user(); 
-            return redirect($this->dashboards[$user->role] ?? '/');
+            return redirect($this->dashboards[$user->role] ?? '/')->with('success', 'You are already logged in.');
         }
 
         return view('auth.login');
