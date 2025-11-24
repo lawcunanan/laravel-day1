@@ -26,10 +26,10 @@ class UserController extends Controller
             $user->status = $status;
             $user->update();
 
-            return redirect()->route('userList.index')->with('success', 'User status updated successfully.');
+            return redirect()->route('viewUserList')->with('success', 'User status updated successfully.');
         } catch (QueryException $e) {
             Log::error('User status update failed: '.$e->getMessage());
-            return redirect()->route('userList.index')->with('error', 'Failed to update user status. Please try again.');
+            return redirect()->route('viewUserList')->with('error', 'Failed to update user status. Please try again.');
         }
     }
 }

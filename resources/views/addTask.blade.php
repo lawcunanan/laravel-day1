@@ -11,7 +11,7 @@
     
     <div class="container mx-auto mt-10 bg-gray-50 p-8 rounded-lg shadow-lg max-w-md w-full">
         <h1 class="text-3xl font-bold text-center text-blue-600 mb-8">My Todo List</h1>
-        <form  action="{{ route('addTasks.store') }}" method="POST" class="space-y-5">
+        <form  action="{{ route('createTask') }}" method="POST" class="space-y-5">
             @csrf
             <div>
                 <label for="title" class="block font-semibold mb-1 text-sm">Title</label>

@@ -11,7 +11,7 @@
 
     <div class="container mx-auto mt-10 bg-gray-50 p-8 rounded-lg shadow-lg max-w-md w-full">
         <h1 class="text-3xl font-bold text-center text-blue-600 mb-8">Create Account</h1>
-        <form action="{{ route('register.store') }}" method="POST" class="space-y-5">
+        <form action="{{ route('registerUser') }}" method="POST" class="space-y-5">
             @csrf
 
             <div>

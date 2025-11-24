@@ -65,7 +65,7 @@
                                             @endif
                                         </ul>
                                     </td>
-                                    <td class="py-3 px-4 text-center">
+                                    <td class="py-3 px-4 text-center min-w-[250px]">
                                         @if($user->status === 'inactive')
                                             <form action="{{ route('statusUser', [$user, 'active']) }}" method="POST" class="inline">
                                                 @csrf

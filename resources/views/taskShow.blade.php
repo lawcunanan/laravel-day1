@@ -53,13 +53,13 @@
                                 <tr>
                                     <td class="py-3 px-4 font-medium text-sm">{{ $task->TaskTitle }}</td>
                                     <td class="py-3 px-4 text-sm">{{ $task->TaskDescription }}</td>
-                                    <td class="py-3 px-4 text-center">
+                                    <td class="py-3 px-4 text-center min-w-[250px]">
                                         <div class="flex justify-center space-x-2">
-                                            <a href="{{ route('editTask.edit', $task) }}" 
+                                            <a href="{{ route('viewEditTask', $task) }}" 
                                                class="bg-blue-600 hover:bg-blue-700 text-white text-sm py-1 px-3 rounded-md shadow-sm transition">
                                                 Edit
                                             </a>
-                                            <form action="{{ route('updateTasks.status', $task) }}" method="POST" class="inline">
+                                            <form action="{{ route('updateTaskStatus', $task) }}" method="POST" class="inline">
                                                 @csrf
                                                 @method('PATCH')
                                                 <button type="submit" 

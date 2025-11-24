@@ -67,7 +67,7 @@ class AuthController extends Controller
             } catch (QueryException $e) {
                 
                 Log::error('Login failed: '.$e->getMessage());
-                return redirect()->back()->with('error', 'Login failed. Please try again.');
+                return redirect('/')->with('error', 'Login failed. Please try again.');
            }
         
     }
