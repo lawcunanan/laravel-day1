@@ -7,6 +7,7 @@ use App\Http\Middleware\Authentication;
 use App\Http\Controllers\UserController;
 
 
+
 //Auth Routes
 Route::get('/', [AuthController::class, 'redirect']);
 Route::get('/register', fn() => view('auth.register'));
@@ -35,3 +36,6 @@ Route::middleware([Authentication::class . ':user'])->group(function () {
     Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('updateTask');
     Route::patch('/tasks/{task}', [TaskController::class, 'updateStatus'])->name('updateTaskStatus');
 });
+
+
+
