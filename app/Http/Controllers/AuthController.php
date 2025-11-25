@@ -46,7 +46,7 @@ class AuthController extends Controller
     public function login(AuthLoginRequest $request) {
        
          try {
-       
+                
                 $validated = $request->validated();
                 $user = User::where('email', $validated['email'])
                             ->where('status', 'active')
